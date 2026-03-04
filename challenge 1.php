@@ -8,17 +8,20 @@
 <body>
     <?php
     $TeaPrix = 10;
-    $Teatotal = 20;
+    $Teatotal = 7;
     $Discount = 0.20;
-    $student = true;
+    $client = array("Particulier", "Student");
 //oprations
     $QntTea = $TeaPrix * $Teatotal;
     $Discou = $QntTea * $Discount;
 
 //student
-    if($student = true){
+    if($client = $client[1]){
         
         $Pris = $QntTea - $Discou;
+        
+    }else{
+        $Pris = $QntTea;
     }
 //Every 5 teas
     $More_five = $Teatotal / 5;
