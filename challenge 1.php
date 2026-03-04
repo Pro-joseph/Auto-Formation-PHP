@@ -22,14 +22,16 @@
         
     }
     if($Teatotal >= 5){
-        $disPertea = $Teatotal * 1 ;
+        $Total = $Pris - 1 ;
     }
-    $total = $Pris - $disPertea;
+    
 
-    echo "Tea ordered: $QntTea DH<br>";
-    echo "Discount: 20%: $Discou DH <br>";
-    echo "Discount Per Tea: -1 DH: $disPertea DH <br>";
-    echo "Tea Bill Total is: $total DH<br>";
+    echo "Tea ordered: $QntTea DH"."<br>";
+    echo "Discount: 20%: $Discou DH"."<br>";
+    echo "Tea Bill: $Pris DH"."<br>";
+    echo "Discount For more than 5 orders: 1 DH:"."<br>";
+    echo "Tea Bill Total is: $Total DH"."<br>";
+
     ?>
 </body>
 </html>
