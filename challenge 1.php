@@ -25,6 +25,7 @@
     }
 //Every 5 teas
     $More_five = $Teatotal / 5;
+    
     if($Teatotal >= 5){
         $Total = $Pris - intval($More_five) ;
     }
