@@ -27,7 +27,7 @@
     
 
     echo "Tea ordered: $QntTea DH"."<br>";
-    echo "Discount: 20%: $Discou DH"."<br>";
+    echo "Discount 20%: $Discou DH"."<br>";
     echo "Tea Bill: $Pris DH"."<br>";
     echo "Discount For more than 5 orders: 1 DH:"."<br>";
     echo "Tea Bill Total is: $Total DH"."<br>";
