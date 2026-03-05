@@ -10,7 +10,7 @@
     $Tea_Prix = 10;
     $Tea_ordered = 9;
     $Discount = 0.20;
-    $client = "Student" or "Particulier";
+    $client = "Student" || "Particulier";
 //oprations
     $Tea_Total = $Tea_Prix * $Tea_ordered;
     $Discount_Student = $Tea_Total * $Discount;

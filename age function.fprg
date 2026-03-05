@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="gggggggg"/>
+        <attribute name="authors" value="youss"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-03-05 10:57:57 AM"/>
+        <attribute name="created" value="eW91c3M7Sk9TRVBIOzIwMjYtMDMtMDU7MTA6MjM6MDEgQU07MjI5MA=="/>
+        <attribute name="edited" value="eW91c3M7Sk9TRVBIOzIwMjYtMDMtMDU7MTA6NTc6NTcgQU07MTsyNDE2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="age" type="Integer" array="False" size=""/>
+            <output expression="&quot;Enter your age&quot;" newline="True"/>
+            <input variable="age"/>
+            <if expression="age &lt;= 12">
+                <then>
+                    <output expression="&quot;the price is 20DH. Special: Children's Menu included!&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="age &gt;= 12 &amp;&amp; age &lt;= 18">
+                        <then>
+                            <output expression="&quot;the price is 40 DH&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="age &gt;= 60">
+                                <then>
+                                    <output expression="&quot;the price is 30 DH (Senior discount)&quot;" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;the price is 60 DH&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
