@@ -1,7 +1,6 @@
 <?php
 
-        $list = [
-            "Laptop"=>"tech","PC Bureau"=>"tech","Router"=>"tech","Potato"=>"legume","Tomato"=>"legume","Bossailo"=>"legume"];
+        $list = ["Laptop"=>"tech","PC Bureau"=>"tech","Router"=>"tech","Potato"=>"legume","Tomato"=>"legume","Bossailo"=>"legume"];
 
         $category = $_GET['category'] ?? null;
         $sort     = $_GET['sort'] ?? 'asc';

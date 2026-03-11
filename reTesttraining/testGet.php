@@ -4,7 +4,7 @@
 
     $colors = $_GET["color"] ?? null;
     $sort = $_GET["sort"] ?? "asc";
-    $sort = $_GET["sort"] ?? "desc";
+  
 
     $alwan = [];
     foreach($Fruits as $product => $color){
