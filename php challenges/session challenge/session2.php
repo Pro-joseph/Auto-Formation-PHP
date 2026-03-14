@@ -19,7 +19,7 @@
 <body>
 
     <form action="" class="m-5 b-1" method="POST">
-        <div class="mb-3 mt-3">
+        <div class="mb-3 mt-3 w-25">
             <label class="form-label">Enter your Favorite Programming Language:</label>
             <input type="text" class="form-control" id="prog" name="prog" placeholder="Your Favorite Programming Language">
             <button type="submit" class="btn btn-primary m-1" name="next">Next</button>
