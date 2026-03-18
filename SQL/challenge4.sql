@@ -17,10 +17,10 @@ SELECT
     library_books.title,
     categories.name AS category
 FROM library_books
-JOIN categories 
+INNER JOIN categories 
 ON library_books.category_id = categories.id;
 
-
+///////////////////////////////////////////////////////////////////////
 INSERT INTO library_books WHERE category_id VALUES
 ('Programming'),
 ('Fantasy'),
