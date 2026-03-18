@@ -14,7 +14,7 @@ FOREIGN KEY (category_id) REFERENCES categories(id);
 
 
 SELECT 
-    library_books.title,
+    library_books.title
     categories.name AS category
 FROM library_books
 INNER JOIN categories 
