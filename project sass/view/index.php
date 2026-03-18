@@ -9,6 +9,7 @@ include('../controller/add_asset.php');
 
 
 
+
 // fetch data category name
 $sql = "SELECT a.*, c.name AS category_name
         FROM assets a
@@ -168,7 +169,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!-- statiscts -->
  <!-- button form and search bar -->
         <div class="container">
-          <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#addProductModal"><i class="bi bi-laptop"></i> Add Device</button>
+          <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#addProductModal"><i class="bi bi-laptop"></i>Add Device</button>
           <div class="modal fade" id="addProductModal">
               <div class="modal-dialog">
               <div class="modal-content">

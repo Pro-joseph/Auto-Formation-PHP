@@ -6,7 +6,7 @@ require_once('../include/header.php');
 
 
 if ($_SESSION['role'] !== 'admin') {
-    die("Access denied");
+    die("you are not authorised here");
 }
 
 // ADD EMPLOYEE

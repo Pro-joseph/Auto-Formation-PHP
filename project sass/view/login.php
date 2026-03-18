@@ -54,7 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST">
 
             <div class="mb-3">
-                <label class="form-label">Username</label>
+                <label class="form-label">Username</label><br>
+                <label class="">admin</label>
                 <input 
                     type="text" 
                     class="form-control" 
@@ -65,7 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Password</label>
+                <label class="form-label">Password</label><br>
+                <label class="">Admin123!</label>
                 <input 
                     type="password" 
                     class="form-control" 

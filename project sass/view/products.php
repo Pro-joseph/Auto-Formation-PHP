@@ -4,6 +4,10 @@ require_once '../controller/auth.php';
 include '../model/db.php';
 include '../include/header.php';
 
+if ($_SESSION['role'] !== 'admin') {
+    die("you are not authorised here");
+}
+
 // Fetch all categories once
 $sql_cat = "SELECT * FROM categories";
 $stmt_cat = $conn->prepare($sql_cat);
@@ -68,29 +72,29 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   Add Bulk Devices
                 </button>
         </div>
-        <!-- CSV Upload Modal -->
-<div class="modal fade" id="uploadCsvModal" tabindex="-1" aria-labelledby="uploadCsvLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form action="../controller/import_csv.php" method="POST" enctype="multipart/form-data">
-        <div class="modal-header">
-          <h5 class="modal-title" id="uploadCsvLabel">Upload CSV</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <!-- CSV Modal -->
+        <div class="modal fade" id="uploadCsvModal" tabindex="-1" aria-labelledby="uploadCsvLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <form action="../controller/import_csv.php" method="POST" enctype="multipart/form-data">
+                <div class="modal-header">
+                <h5 class="modal-title" id="uploadCsvLabel">Upload CSV</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                <div class="mb-3">
+                    <label for="csvFile" class="form-label">Choose CSV file</label>
+                    <input type="file" name="csv_file" id="csvFile" class="form-control" accept=".csv" required>
+                </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" name="import_csv" class="btn btn-success">Upload</button>
+                </div>
+            </form>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="csvFile" class="form-label">Choose CSV file</label>
-            <input type="file" name="csv_file" id="csvFile" class="form-control" accept=".csv" required>
-          </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" name="import_csv" class="btn btn-success">Upload</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
     <!-- Table -->
     <div class="table-responsive">
         <table class="table table-hover table-striped border shadow-sm">
