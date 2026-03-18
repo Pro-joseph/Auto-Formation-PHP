@@ -117,7 +117,7 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>home</title>
 </head>
 <body>
-    <h3 class="text-center m-3 p-1">DASHBOARD</h3>
+    <h3 class="text-center m-3 p-1">GEARLOG DASHBOARD</h3>
 <!-- statistics -->
     <div class="container mt-4">
 
