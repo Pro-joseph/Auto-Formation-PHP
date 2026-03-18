@@ -100,7 +100,7 @@ $users = $stmt->fetchAll();
 
 <div class="container mt-5">
 
-    <h3 class="mb-4">Manage Employees</h3>
+    <h3 class="mb-4 text-center">Manage Employees</h3>
 
     <!-- ADD BUTTON -->
     <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addModal">
