@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form method="POST">
 
-            <div class="mb-3">
+            <div class="mb-3" id="addemployer">
                 <label class="form-label">Username</label>
                 <input type="text" name="username" class="form-control" placeholder="Enter username">
             </div>

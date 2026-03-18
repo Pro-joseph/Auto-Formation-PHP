@@ -37,6 +37,9 @@ if (isset($_POST['logout'])) {
         <li class="nav-item">
           <a class="nav-link active link-opacity-50-hove" href="products.php">Devices</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active link-opacity-50-hove" href="users.php">Employers</a>
+        </li>
       </ul>
 
       <!-- Search form -->
