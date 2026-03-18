@@ -143,7 +143,7 @@ $users = $stmt->fetchAll();
 
     <!-- TABLE -->
     <table class="table table-bordered table-striped">
-        <thead class="table-dark">
+        <thead class="table-light">
             <tr>
                 <th>ID</th>
                 <th>Username</th>
