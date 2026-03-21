@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['error'] = "Failed to add product \"$device_name\".";
         }
 
-        header("Location: ../view/index.php");
+        header("Location: ../view/products.php");
         exit;
     } else {
         $errorMsg = implode(" | ", array_filter([$device_nameErr, $serial_numberErr, $priceErr]));
