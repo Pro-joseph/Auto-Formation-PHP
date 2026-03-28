@@ -1,13 +1,5 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) session_start();
-
-if (isset($_POST['logout'])) {
-    $_SESSION = [];
-    session_unset();
-    session_destroy();
-    header("Location: login.php");
-    exit;
-}
+// Demo Mode: Session and Auth removed
 ?>
 
 <!DOCTYPE html>

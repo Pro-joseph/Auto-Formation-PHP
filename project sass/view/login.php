@@ -2,26 +2,15 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require '../model/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    // Demo Mode: Always login
+    $_SESSION['user_id'] = 1;
+    $_SESSION['username'] = 'admin';
+    $_SESSION['role'] = 'admin';
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
-    $stmt->execute(['username' => $username]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $user['role'];
-
-        header("Location: ../view/index.php");
-        exit;
-    } else {
-        $error = "Invalid username or password.";
-    }
+    header("Location: ../view/index.php");
+    exit;
 }
 ?>
 

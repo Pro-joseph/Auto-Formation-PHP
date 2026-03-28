@@ -1,99 +1,25 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) session_start(); 
+// Demo Mode: Mock Data
+$pricetotal = ['total_cost' => 125000];
+$stock = ['stock' => 45];
+$in_repair = ['in_repair' => 5];
+$deployed = ['deployed' => 70];
 
-require_once '../controller/auth.php';
-require_once '../model/db.php';        
+$assets = [
+    ['id' => 1, 'device_name' => 'MacBook Pro 16"', 'serial_number' => 'MBP16001', 'price' => 25000, 'category_name' => 'Laptops', 'status' => 'Deployed'],
+    ['id' => 2, 'device_name' => 'Dell XPS 15', 'serial_number' => 'DXPS15002', 'price' => 18000, 'category_name' => 'Laptops', 'status' => 'In Stock'],
+    ['id' => 3, 'device_name' => 'iPhone 15 Pro', 'serial_number' => 'IP15P003', 'price' => 12000, 'category_name' => 'Phones', 'status' => 'In Stock'],
+    ['id' => 4, 'device_name' => 'Samsung S24 Ultra', 'serial_number' => 'S24U004', 'price' => 11000, 'category_name' => 'Phones', 'status' => 'Under Repair'],
+    ['id' => 5, 'device_name' => 'Logitech MX Master 3', 'serial_number' => 'LMXM3005', 'price' => 1200, 'category_name' => 'Accessories', 'status' => 'Deployed'],
+    ['id' => 6, 'device_name' => 'Dell 27" Monitor', 'serial_number' => 'D27M006', 'price' => 3500, 'category_name' => 'Monitors', 'status' => 'In Stock'],
+];
 
 include('../include/header.php');
-
-
-// fetch data category name
-$sql = "SELECT a.*, c.name AS category_name
-        FROM assets a
-        INNER JOIN categories c ON a.category_id = c.id";
-
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-
-
-// financial agregation
-$sql = "SELECT SUM(price) AS total_cost FROM assets";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$pricetotal = $stmt->fetch(PDO::FETCH_ASSOC);
-
-$sql = "SELECT COUNT(*) AS stock FROM assets WHERE status = 'In Stock'";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$stock = $stmt->fetch(PDO::FETCH_ASSOC);
-
-$sql = "SELECT COUNT(*) AS in_repair FROM assets WHERE status = 'Under Repair'";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$in_repair = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-$sql = "SELECT COUNT(*) AS deployed FROM assets WHERE status = 'Deployed'";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$deployed = $stmt->fetch(PDO::FETCH_ASSOC);
-
-// search bar
-
-$search = $_GET['search'] ?? '';
-
-if (!empty($search)) {
-    $sql = "SELECT a.*, c.name AS category_name
-            FROM assets a
-            INNER JOIN categories c ON a.category_id = c.id
-            WHERE a.device_name LIKE :search
-               OR a.serial_number LIKE :search";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([
-        'search' => "%$search%"
-    ]);
-} else {
-    $sql = "SELECT a.*, c.name AS category_name
-            FROM assets a
-            INNER JOIN categories c ON a.category_id = c.id";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-}
-
-$assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
- if (!empty($_SESSION['success'])): ?>
-    <div class="alert alert-success alert-dismissible fade show m-3 w-25 h-100" role="alert">
-        <?= $_SESSION['success']; ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    <?php unset($_SESSION['success']); ?>
-<?php endif; ?>
-
-<?php if (!empty($_SESSION['error'])): ?>
-    <div class="alert alert-danger alert-dismissible fade show m-3 w-25 h-100" role="alert">
-        <?= $_SESSION['error']; ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    <?php unset($_SESSION['error']); ?>
-<?php endif; ?>
+?>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    const alerts = document.querySelectorAll('.alert');
-
-    alerts.forEach(function(alert) {
-      setTimeout(function() {
-        alert.classList.remove('show');
-        alert.classList.add('hide');
-        setTimeout(() => alert.remove(), 500);
-      }, 3000); 
-    });
+    // Demo Mode: Alerts removed
   });
 </script>
 

@@ -1,90 +1,12 @@
 <?php
-require_once '../controller/auth.php';
-require_once '../model/db.php';
+// Demo Mode: Mock Data
+$users = [
+    ['id' => 1, 'username' => 'alice_mgr', 'email' => 'alice@company.com', 'title' => 'manager'],
+    ['id' => 2, 'username' => 'bob_staff', 'email' => 'bob@company.com', 'title' => 'staff'],
+    ['id' => 3, 'username' => 'charlie_intern', 'email' => 'charlie@company.com', 'title' => 'intern'],
+];
+
 require_once('../include/header.php');
-
-
-
-if ($_SESSION['role'] !== 'admin') {
-    die("you are not authorised here");
-}
-
-// ADD EMPLOYEE
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_user'])) {
-
-    $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
-    $title = $_POST['title'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-    // check duplicate username
-    $check = $conn->prepare("SELECT id FROM users WHERE username = :username");
-    $check->execute(['username' => $username]);
-
-    if ($check->fetch()) {
-        die("Username already exists");
-    }
-
-    $stmt = $conn->prepare("
-        INSERT INTO users (username, email, password, role, title)
-        VALUES (:username, :email, :password, 'employee', :title)
-    ");
-
-    $stmt->execute([
-        'username' => $username,
-        'email' => $email,
-        'password' => $password,
-        'title' => $title
-    ]);
-
-    header("Location: users.php");
-    exit();
-}
-  
-
-// delete
-if (isset($_GET['delete'])) {
-    $id = (int) $_GET['delete'];
-
-    $stmt = $conn->prepare("DELETE FROM users WHERE id = :id AND role = 'employee'");
-    $stmt->execute(['id' => $id]);
-
-    header("Location: users.php");
-    exit();
-}
-
-// edit user
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id'])) {
-
-    $id = (int) $_POST['update_id'];
-    $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
-    $title = $_POST['title'];
-
-    if (!empty($username) && !empty($email)) {
-
-        $stmt = $conn->prepare("
-            UPDATE users 
-            SET username = :username, email = :email, title = :title 
-            WHERE id = :id AND role = 'employee'
-        ");
-
-        $stmt->execute([
-            'username' => $username,
-            'email' => $email,
-            'title' => $title,
-            'id' => $id
-        ]);
-    }
-
-    header("Location: users.php");
-    exit();
-}
-
-// FETCH USERS
-$stmt = $conn->prepare("SELECT id, username, email, title FROM users WHERE role = 'employee'");
-$stmt->execute();
-$users = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>

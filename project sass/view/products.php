@@ -1,41 +1,22 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) session_start();
-require_once '../controller/auth.php';
-include '../model/db.php';
+// Demo Mode: Mock Data
+$categories = [
+    ['id' => 1, 'name' => 'Laptops'],
+    ['id' => 2, 'name' => 'Phones'],
+    ['id' => 3, 'name' => 'Accessories'],
+    ['id' => 4, 'name' => 'Monitors'],
+];
+
+$assets = [
+    ['id' => 1, 'device_name' => 'MacBook Pro 16"', 'serial_number' => 'MBP16001', 'price' => 25000, 'category_id' => 1, 'category_name' => 'Laptops', 'status' => 'Deployed'],
+    ['id' => 2, 'device_name' => 'Dell XPS 15', 'serial_number' => 'DXPS15002', 'price' => 18000, 'category_id' => 1, 'category_name' => 'Laptops', 'status' => 'In Stock'],
+    ['id' => 3, 'device_name' => 'iPhone 15 Pro', 'serial_number' => 'IP15P003', 'price' => 12000, 'category_id' => 2, 'category_name' => 'Phones', 'status' => 'In Stock'],
+    ['id' => 4, 'device_name' => 'Samsung S24 Ultra', 'serial_number' => 'S24U004', 'price' => 11000, 'category_id' => 2, 'category_name' => 'Phones', 'status' => 'Under Repair'],
+    ['id' => 5, 'device_name' => 'Logitech MX Master 3', 'serial_number' => 'LMXM3005', 'price' => 1200, 'category_id' => 3, 'category_name' => 'Accessories', 'status' => 'Deployed'],
+    ['id' => 6, 'device_name' => 'Dell 27" Monitor', 'serial_number' => 'D27M006', 'price' => 3500, 'category_id' => 4, 'category_name' => 'Monitors', 'status' => 'In Stock'],
+];
+
 include '../include/header.php';
-include('../controller/add_asset.php');
-
-
-if ($_SESSION['role'] !== 'admin') {
-    die("you are not authorised here");
-}
-
-// Fetch all categories once
-$sql_cat = "SELECT * FROM categories";
-$stmt_cat = $conn->prepare($sql_cat);
-$stmt_cat->execute();
-$categories = $stmt_cat->fetchAll(PDO::FETCH_ASSOC);
-
-// Fetch assets
-$search = $_GET['search'] ?? '';
-if (!empty($search)) {
-    $sql = "SELECT a.*, c.name AS category_name
-            FROM assets a
-            INNER JOIN categories c ON a.category_id = c.id
-            WHERE a.device_name LIKE :search OR a.serial_number LIKE :search
-            ORDER BY a.id DESC";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['search' => "%$search%"]);
-} else {
-    $sql = "SELECT a.*, c.name AS category_name
-            FROM assets a
-            INNER JOIN categories c ON a.category_id = c.id
-            ORDER BY a.id DESC";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-}
-
-$assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -53,21 +34,8 @@ $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h3 class="text-center mb-4">DEVICES</h3>
 
     <!-- Alerts -->
-    <!-- <?php if (!empty($_SESSION['success'])): ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <?= $_SESSION['success']; ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    <?php unset($_SESSION['success']); ?>
-    <?php endif; ?>
-
-    <?php if (!empty($_SESSION['error'])): ?>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <?= $_SESSION['error']; ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    <?php unset($_SESSION['error']); ?>
-    <?php endif; ?> -->
+    <!-- Alerts -->
+    <!-- Demo Mode: Alerts removed -->
 
 <!-- button form and search bar -->
         <div class="d-flex mb-3 gap-2">
