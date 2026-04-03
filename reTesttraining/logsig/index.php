@@ -15,6 +15,8 @@ session_start();
 </head>
 <body>
     <div>
+        <button name="add" type="submit"><a href="add.php">add</a></button>
+        <button name="logout" type="submit"><a href="logout.php">logout</a></button>
         <table>
             <tr>
                 <th>Username</th>
