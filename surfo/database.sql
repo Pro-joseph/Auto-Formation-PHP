@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- ---- Table: students ----
+--- Table: students ----
 CREATE TABLE IF NOT EXISTS students (
     id         INT AUTO_INCREMENT PRIMARY KEY,
     user_id    INT NOT NULL,
